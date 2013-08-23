@@ -3,6 +3,7 @@ package net.xenosmc.mob;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
@@ -41,10 +42,14 @@ public class EntityListener implements Listener {
                     event.setDamage(pt.getDamage());
                 }
             }
-        } else if (!(event.getDamager() instanceof Player)) {
-            // take this opportunity to remove mobs that shouldn't be here.
-            event.getDamager().remove();
-            event.setCancelled(true);
+        } else if (event.getDamager() instanceof Projectile) {
+            if (((Projectile) event.getDamager()).getShooter().hasMetadata("spawnPoint")) {
+                String key = ((Projectile) event.getDamager()).getShooter().getMetadata("spawnPoint").get(0).asString();
+                SpawnPoint pt = plugin.getSpawnPoints().get(key);
+                if (pt != null) {
+                    event.setDamage(pt.getDamage());
+                }
+            }
         }
     }
 
