@@ -1,10 +1,12 @@
 package net.xenosmc.mob;
 
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.world.ChunkUnloadEvent;
 
 import java.util.EnumSet;
 
@@ -65,6 +67,20 @@ public class EntityListener implements Listener {
             if (sp != null) {
                 sp.setEntityId(null);
                 sp.setLastDeathTime(System.currentTimeMillis());
+            }
+        }
+    }
+
+
+    @EventHandler
+    public void onChunkUnload(ChunkUnloadEvent event) {
+        for (Entity e: event.getChunk().getEntities()) {
+            if (e.hasMetadata("spawnPoint")) {
+                plugin.debug("Removing " + e + " due to chunk unload.");
+                SpawnPoint pt = plugin.getSpawnPoints().get(e.getMetadata("spawnPoint").get(0).asString().toLowerCase());
+                e.remove();
+                pt.setLastDeathTime(System.currentTimeMillis());
+                pt.setEntityId(null);
             }
         }
     }

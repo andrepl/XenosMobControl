@@ -161,15 +161,10 @@ public class XenosMobController extends JavaPlugin {
         saveConfig();
     }
 
-    @EventHandler
-    public void onChunkUnload(ChunkUnloadEvent event) {
-        for (Entity e: event.getChunk().getEntities()) {
-            if (e.hasMetadata("spawnPoint")) {
-                SpawnPoint pt = getSpawnPoints().get(e.getMetadata("spawnPoint").get(0).asString().toLowerCase());
-                e.remove();
-                pt.setLastDeathTime(System.currentTimeMillis());
-                pt.setEntityId(null);
-            }
+
+    public void debug(String s) {
+        if (getConfig().getBoolean("debug")) {
+            getLogger().info(s);
         }
     }
 
