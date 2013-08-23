@@ -32,7 +32,7 @@ public class CommandHandler implements TabExecutor {
         }
 
         if (args[0].toLowerCase().equals("create")) {
-            if (args.length != 7) {
+            if (args.length < 7) {
                 return false;
             }
 
@@ -80,6 +80,12 @@ public class CommandHandler implements TabExecutor {
                 return true;
             }
 
+            String customName = null;
+            if (args.length >= 8) {
+                customName = args[7].replace("_", " ");
+            }
+
+
             Location loc = ((Player) sender).getLocation();
             SpawnPoint p = new SpawnPoint(name);
             p.setLocation(loc);
@@ -89,6 +95,7 @@ public class CommandHandler implements TabExecutor {
             p.setMinPlayers(minPlayers);
             p.setRespawnTimer(respawnTimer);
             p.setEntityType(et);
+            p.setCustomName(customName);
             plugin.addSpawnPoint(p);
             sender.sendMessage("SpawnPoint '" + name + "' created.");
             return true;
