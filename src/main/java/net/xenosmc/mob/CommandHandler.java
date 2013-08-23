@@ -144,11 +144,11 @@ public class CommandHandler implements TabExecutor {
                 return true;
             }
             Player p = ((Player) sender);
-            pt.setHelmet(p.getEquipment().getHelmet().clone());
+            pt.setHelmet(p.getEquipment().getHelmet() == null ? null : p.getEquipment().getHelmet().clone());
             pt.setChestplate(p.getEquipment().getChestplate().clone());
-            pt.setLeggings(p.getEquipment().getLeggings().clone());
-            pt.setBoots(p.getEquipment().getBoots().clone());
-            pt.setHand(p.getItemInHand().clone());
+            pt.setLeggings(p.getEquipment().getLeggings() == null ? null : p.getEquipment().getLeggings().clone());
+            pt.setBoots(p.getEquipment().getBoots()== null ? null : p.getEquipment().getBoots().clone());
+            pt.setHand(p.getItemInHand()== null ? null : p.getEquipment().getItemInHand().clone());
             ConfigurationSection sect = plugin.getConfig().getConfigurationSection("spawn-points." + pt.getName());
             sect.set("helmet", pt.getHelmet());
             sect.set("chestplate", pt.getChestplate());
