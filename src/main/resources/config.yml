@@ -1,2 +1,3 @@
+debug: true
 prevent-natural-spawns: true
 spawn-points:

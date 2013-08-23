@@ -54,6 +54,7 @@ public class XenosMobController extends JavaPlugin {
                                     count++;
                                 }
                             }
+                            debug(count + " players within " + rad + "(sq) [need min. " + next.getMinPlayers() + "]");
                             if (count >= next.getMinPlayers()) {
                                 spawnMob(next);
                             }

@@ -86,6 +86,7 @@ public class CommandHandler implements TabExecutor {
             p.setHealth(health);
             p.setDamage(damage);
             p.setEnabled(true);
+            p.setMinPlayers(minPlayers);
             p.setRespawnTimer(respawnTimer);
             p.setEntityType(et);
             plugin.addSpawnPoint(p);
