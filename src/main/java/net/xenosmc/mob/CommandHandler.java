@@ -145,7 +145,7 @@ public class CommandHandler implements TabExecutor {
             }
             Player p = ((Player) sender);
             pt.setHelmet(p.getEquipment().getHelmet() == null ? null : p.getEquipment().getHelmet().clone());
-            pt.setChestplate(p.getEquipment().getChestplate().clone());
+            pt.setChestplate(p.getEquipment().getChestplate() == null ? null : p.getEquipment().getChestplate().clone());
             pt.setLeggings(p.getEquipment().getLeggings() == null ? null : p.getEquipment().getLeggings().clone());
             pt.setBoots(p.getEquipment().getBoots()== null ? null : p.getEquipment().getBoots().clone());
             pt.setHand(p.getItemInHand()== null ? null : p.getEquipment().getItemInHand().clone());
