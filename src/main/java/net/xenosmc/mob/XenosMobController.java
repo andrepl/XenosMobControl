@@ -74,13 +74,17 @@ public class XenosMobController extends JavaPlugin {
             if (entity instanceof Skeleton) {
                 ((Skeleton) entity).setSkeletonType(Skeleton.SkeletonType.NORMAL);
             }
-            ((LivingEntity) entity).getEquipment().setHelmet(spawnPoint.getHelmet().clone());
-            ((LivingEntity) entity).getEquipment().setChestplate(spawnPoint.getChestplate().clone());
-            ((LivingEntity) entity).getEquipment().setLeggings(spawnPoint.getLeggings().clone());
-            ((LivingEntity) entity).getEquipment().setBoots(spawnPoint.getBoots().clone());
-            ((LivingEntity) entity).getEquipment().setItemInHand(spawnPoint.getHand().clone());
+            ((LivingEntity) entity).getEquipment().setHelmet(spawnPoint.getHelmet() != null ? spawnPoint.getHelmet().clone() : null);
+            ((LivingEntity) entity).getEquipment().setChestplate(spawnPoint.getChestplate()!= null ? spawnPoint.getChestplate().clone(): null);
+            ((LivingEntity) entity).getEquipment().setLeggings(spawnPoint.getLeggings()!= null ? spawnPoint.getLeggings().clone() : null);
+            ((LivingEntity) entity).getEquipment().setBoots(spawnPoint.getBoots()!= null ? spawnPoint.getBoots().clone() : null);
+            ((LivingEntity) entity).getEquipment().setItemInHand(spawnPoint.getHand()!= null ? spawnPoint.getHand().clone(): null);
         }
         ((LivingEntity) entity).setRemoveWhenFarAway(false);
+        if (spawnPoint.getCustomName() != null) {
+            ((LivingEntity) entity).setCustomName(spawnPoint.getCustomName());
+            ((LivingEntity) entity).setCustomNameVisible(true);
+        }
         spawnPoint.setEntityId(entity.getUniqueId());
     }
 
@@ -105,6 +109,12 @@ public class XenosMobController extends JavaPlugin {
             p.setMinPlayers(c.getInt("min-players", 1));
             p.setSpawnRadius(c.getInt("spawn-radius", 30));
             p.setRespawnTimer(c.getLong("respawn-timer"));
+            p.setHelmet(c.getItemStack("helmet"));
+            p.setChestplate(c.getItemStack("chestplate"));
+            p.setLeggings(c.getItemStack("leggings"));
+            p.setBoots(c.getItemStack("boots"));
+            p.setHand(c.getItemStack("hand"));
+            p.setCustomName(c.getString("custom-name", null));
             spawnPoints.put(p.getName().toLowerCase(), p);
             if (p.isEnabled()) {
                 enabled.add(p);

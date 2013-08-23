@@ -23,6 +23,7 @@ public class SpawnPoint {
     private ItemStack leggings = null;
     private ItemStack boots = null;
     private ItemStack hand = null;
+    private String customName = null;
 
     public SpawnPoint(String name) {
         this.name = name;
@@ -170,5 +171,13 @@ public class SpawnPoint {
 
     public void setHand(ItemStack hand) {
         this.hand = hand;
+    }
+
+    public String getCustomName() {
+        return customName;
+    }
+
+    public void setCustomName(String customName) {
+        this.customName = customName;
     }
 }
