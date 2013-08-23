@@ -45,8 +45,13 @@ public class XenosMobController extends JavaPlugin {
                         if (next.getLastDeathTime() + (next.getRespawnTimer() * 1000) < System.currentTimeMillis()) {
                             int rad = next.getSpawnRadiusSquared();
                             int count = 0;
-                            for (Player p: getServer().getOnlinePlayers()) {
-                                double dist = p.getLocation().distanceSquared(next.getLocation());
+                            for (Player p: next.getLocation().getWorld().getPlayers()) {
+                                double dist = -1;
+                                try {
+                                    dist = p.getLocation().distanceSquared(next.getLocation());
+                                } catch (IllegalArgumentException ex) {
+                                    continue;
+                                }
                                 if (dist <= rad) {
                                     count++;
                                 }
