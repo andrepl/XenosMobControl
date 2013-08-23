@@ -1,0 +1,22 @@
+main: net.xenosmc.mob.XenosMobController
+name: XenosMobController
+author: metalhedd
+version: 1.0-SNAPSHOT
+commands:
+  xenosmobcontrol:
+    aliases: [xmc]
+    usage: |
+      /<command> create [name] [entity] [health] [damage] [respawn] [minPlayers] - create a spawn point.
+      /<command> enable [name] - enable a spawn point.
+      /<command> disable [name] - disable a spawn point.
+      /<command> delete [name] - delete a spawn point.
+      /<command> list - list all spawn points.
+
+    permission: xenosmobcontroller.admin
+
+
+permissions:
+  xenosmobcontroller.admin:
+    default: op
+    description: allows managing spawn points.
+
