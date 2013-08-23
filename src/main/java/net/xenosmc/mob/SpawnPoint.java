@@ -2,6 +2,7 @@ package net.xenosmc.mob;
 
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
@@ -17,6 +18,11 @@ public class SpawnPoint {
     int spawnRadius = 30;
     private UUID entityId;
     private long lastDeathTime = 0;
+    private ItemStack helmet = null;
+    private ItemStack chestplate = null;
+    private ItemStack leggings = null;
+    private ItemStack boots = null;
+    private ItemStack hand = null;
 
     public SpawnPoint(String name) {
         this.name = name;
@@ -124,5 +130,45 @@ public class SpawnPoint {
 
     public int getSpawnRadiusSquared() {
         return spawnRadius * spawnRadius;
+    }
+
+    public ItemStack getHelmet() {
+        return helmet;
+    }
+
+    public void setHelmet(ItemStack helmet) {
+        this.helmet = helmet;
+    }
+
+    public ItemStack getChestplate() {
+        return chestplate;
+    }
+
+    public void setChestplate(ItemStack chestplate) {
+        this.chestplate = chestplate;
+    }
+
+    public ItemStack getLeggings() {
+        return leggings;
+    }
+
+    public void setLeggings(ItemStack leggings) {
+        this.leggings = leggings;
+    }
+
+    public ItemStack getBoots() {
+        return boots;
+    }
+
+    public void setBoots(ItemStack boots) {
+        this.boots = boots;
+    }
+
+    public ItemStack getHand() {
+        return hand;
+    }
+
+    public void setHand(ItemStack hand) {
+        this.hand = hand;
     }
 }

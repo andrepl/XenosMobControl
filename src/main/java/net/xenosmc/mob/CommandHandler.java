@@ -129,6 +129,28 @@ public class CommandHandler implements TabExecutor {
 
             sender.sendMessage("Spawn Point '" + pt.getName() + "' deleted.");
             return true;
+        } else if (args[0].equalsIgnoreCase("equip")) {
+            if (args.length != 2) return false;
+            SpawnPoint pt = plugin.getSpawnPoints().get(args[1].toLowerCase());
+            if (pt == null) {
+                sender.sendMessage("Unknown Spawn Point: " + args[1]);
+                return true;
+            }
+            Player p = ((Player) sender);
+            pt.setHelmet(p.getEquipment().getHelmet().clone());
+            pt.setChestplate(p.getEquipment().getChestplate().clone());
+            pt.setLeggings(p.getEquipment().getLeggings().clone());
+            pt.setBoots(p.getEquipment().getBoots().clone());
+            pt.setHand(p.getItemInHand().clone());
+            ConfigurationSection sect = plugin.getConfig().getConfigurationSection("spawn-points." + pt.getName());
+            sect.set("helmet", pt.getHelmet());
+            sect.set("chestplate", pt.getChestplate());
+            sect.set("leggings", pt.getLeggings());
+            sect.set("boots", pt.getBoots());
+            sect.set("hand", pt.getHand());
+            plugin.saveConfig();
+            sender.sendMessage("Spawn Point '" + pt.getName() + "' Equipment set.");
+            return true;
         } else if (args[0].equalsIgnoreCase("list")) {
             String list = "";
             SpawnPoint pt;
@@ -158,6 +180,7 @@ public class CommandHandler implements TabExecutor {
             if ("disable".startsWith(args[0].toLowerCase())) results.add("disable");
             if ("delete".startsWith(args[0].toLowerCase())) results.add("delete");
             if ("list".startsWith(args[0].toLowerCase())) results.add("list");
+            if ("equip".startsWith(args[0].toLowerCase())) results.add("equip");
         } else if (args[0].equalsIgnoreCase("create")) {
             if (args.length == 3) {
                 // entity type

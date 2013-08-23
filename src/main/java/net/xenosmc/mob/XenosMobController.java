@@ -3,10 +3,7 @@ package net.xenosmc.mob;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -74,6 +71,14 @@ public class XenosMobController extends JavaPlugin {
         if (entity instanceof LivingEntity) {
             ((LivingEntity) entity).setMaxHealth(spawnPoint.getHealth());
             ((LivingEntity) entity).setHealth(spawnPoint.getHealth());
+            if (entity instanceof Skeleton) {
+                ((Skeleton) entity).setSkeletonType(Skeleton.SkeletonType.NORMAL);
+            }
+            ((LivingEntity) entity).getEquipment().setHelmet(spawnPoint.getHelmet());
+            ((LivingEntity) entity).getEquipment().setChestplate(spawnPoint.getChestplate());
+            ((LivingEntity) entity).getEquipment().setLeggings(spawnPoint.getLeggings());
+            ((LivingEntity) entity).getEquipment().setBoots(spawnPoint.getBoots());
+            ((LivingEntity) entity).getEquipment().setItemInHand(spawnPoint.getHand());
         }
         ((LivingEntity) entity).setRemoveWhenFarAway(false);
         spawnPoint.setEntityId(entity.getUniqueId());
