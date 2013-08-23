@@ -11,6 +11,7 @@ commands:
       /<command> disable [name] - disable a spawn point.
       /<command> delete [name] - delete a spawn point.
       /<command> list - list all spawn points.
+      /<command> equip [name] - sets the equipment for the mob spawned at [name] to the players current equipment.
 
     permission: xenosmobcontroller.admin
 
