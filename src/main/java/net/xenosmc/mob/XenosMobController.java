@@ -74,11 +74,11 @@ public class XenosMobController extends JavaPlugin {
             if (entity instanceof Skeleton) {
                 ((Skeleton) entity).setSkeletonType(Skeleton.SkeletonType.NORMAL);
             }
-            ((LivingEntity) entity).getEquipment().setHelmet(spawnPoint.getHelmet());
-            ((LivingEntity) entity).getEquipment().setChestplate(spawnPoint.getChestplate());
-            ((LivingEntity) entity).getEquipment().setLeggings(spawnPoint.getLeggings());
-            ((LivingEntity) entity).getEquipment().setBoots(spawnPoint.getBoots());
-            ((LivingEntity) entity).getEquipment().setItemInHand(spawnPoint.getHand());
+            ((LivingEntity) entity).getEquipment().setHelmet(spawnPoint.getHelmet().clone());
+            ((LivingEntity) entity).getEquipment().setChestplate(spawnPoint.getChestplate().clone());
+            ((LivingEntity) entity).getEquipment().setLeggings(spawnPoint.getLeggings().clone());
+            ((LivingEntity) entity).getEquipment().setBoots(spawnPoint.getBoots().clone());
+            ((LivingEntity) entity).getEquipment().setItemInHand(spawnPoint.getHand().clone());
         }
         ((LivingEntity) entity).setRemoveWhenFarAway(false);
         spawnPoint.setEntityId(entity.getUniqueId());
