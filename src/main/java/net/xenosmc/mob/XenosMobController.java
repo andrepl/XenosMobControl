@@ -201,6 +201,7 @@ public class XenosMobController extends JavaPlugin {
         sect.set("respawn-timer", p.getRespawnTimer());
         sect.set("min-players", p.getMinPlayers());
         sect.set("entity-type", p.getEntityType().name());
+        sect.set("custom-name", p.getCustomName());
         saveConfig();
     }
 
