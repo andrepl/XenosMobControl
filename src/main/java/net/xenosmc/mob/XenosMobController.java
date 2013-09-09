@@ -2,6 +2,7 @@ package net.xenosmc.mob;
 
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -170,6 +171,7 @@ public class XenosMobController extends JavaPlugin {
         enabled.remove(p);
         getConfig().getConfigurationSection("spawn-points").getConfigurationSection(p.getName()).set("enabled", false);
         saveConfig();
+
     }
 
     public void removeSpawnPoint(SpawnPoint p) {
